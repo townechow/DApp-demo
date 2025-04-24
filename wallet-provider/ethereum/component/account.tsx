@@ -23,14 +23,14 @@ export function Account() {
       {authStatus === "authenticated" ? (
         <button
           onClick={handleSignOut}
-          className="border border-gray-300 rounded-md p-2"
+          className="border border-gray-300 rounded-md p-2 cursor-pointer"
         >
           Sign Out
         </button>
       ) : (
         <button
           onClick={handleSignIn}
-          className="border border-gray-300 rounded-md p-2"
+          className="border border-gray-300 rounded-md p-2 cursor-pointer"
         >
           Sign In
         </button>
@@ -40,7 +40,7 @@ export function Account() {
           handleSignOut();
           disconnect();
         }}
-        className="border border-gray-300 rounded-md p-2"
+        className="border border-gray-300 rounded-md p-2 cursor-pointer"
       >
         Disconnect
       </button>
