@@ -1,0 +1,33 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../lib/prisma/client"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+model WalletNonce {
+  id        Int      @id @default(autoincrement())
+  address   String
+  chainType String
+  nonce     String
+  updatedAt DateTime @updatedAt
+  createdAt DateTime @default(now())
+
+  @@unique([address, chainType])
+}
+
+model User {
+  id         Int      @id @default(autoincrement())
+  address    String
+  chainType  String
+  uid        Int      @unique
+  createdAt  DateTime @default(now())
+  nickname   String?
+  avatarUrl  String?
+  email      String?
+
+  @@unique([address, chainType])
+}
