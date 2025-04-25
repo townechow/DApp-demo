@@ -3,9 +3,14 @@ generator client {
   output   = "../lib/prisma/client"
 }
 
+// datasource db {
+//   provider = "sqlite"
+//   url      = "file:./dev.db"
+// }
+
 datasource db {
-  provider = "sqlite"
-  url      = "file:./dev.db"
+  provider  = "postgresql"
+  url  	    = env("DATABASE_URL")
 }
 
 model WalletNonce {
