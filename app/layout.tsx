@@ -15,7 +15,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Dapp-demo",
+  title: "DApp-demo",
   description: "Practice wagmi",
 };
 

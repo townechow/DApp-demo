@@ -40,3 +40,5 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 *.db
+prisma/migrations
+lib/prisma/client/

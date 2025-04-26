@@ -55,13 +55,9 @@ export async function POST(req: Request) {
         isSuccess: true,
         token,
         userInfo: {
-          id: user.id,
-          address: user.address,
-          chainType: user.chainType,
-          nickname: user.nickname,
-          avatarUrl: user.avatarUrl,
-          email: user.email,
+          ...user,
           createdAt: user.createdAt.getTime(),
+          updatedAt: user.updatedAt?.getTime(),
         },
       },
     });

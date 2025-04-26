@@ -53,7 +53,7 @@ export const initAdapter: AuthenticationAdapter = {
         const chainType = getChainType(chainId)
         const userToken = await getUserToken({ address, chainType, signature });
         if (userToken.data.isSuccess) {
-            setUserToken(userToken.data.token)
+            setUserToken(userToken.data.token, JSON.stringify(userToken.data.userInfo))
         }
         return userToken.data.isSuccess;
     },

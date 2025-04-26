@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useAccount } from "wagmi";
 import { signMessage } from "@wagmi/core";
 import { setUserToken, getUserToken } from "@/utils";

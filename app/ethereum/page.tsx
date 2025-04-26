@@ -8,7 +8,7 @@ import { WalletOptions } from '@/wallet-provider/ethereum/component/wallet-optio
 
 export default function EthereumPage() {
   return (
-    <div className='flex flex-col items-center justify-center h-screen'>
+    <div className='flex flex-col items-center justify-center min-h-screen'>
       <ConnectWallet />
     </div>
   )
