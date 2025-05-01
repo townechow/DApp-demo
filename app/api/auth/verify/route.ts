@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
-import { isAddress, recoverMessageAddress } from "viem";
 import jwt from "jsonwebtoken";
 import { PrismaClient } from "@/lib/prisma/client";
+import { verifySignature } from "./verifySignature";
 
 const prisma = new PrismaClient();
 const JWT_SECRET = process.env.JWT_SECRET || "change_this_secret";
@@ -9,7 +9,7 @@ const JWT_SECRET = process.env.JWT_SECRET || "change_this_secret";
 export async function POST(req: Request) {
   const { address, signature, chainType } = await req.json();
 
-  if (!address || !signature || !chainType || !isAddress(address)) {
+  if (!address || !signature || !chainType) {
     return NextResponse.json({ error: "Invalid input" }, { status: 400 });
   }
 
@@ -24,12 +24,14 @@ export async function POST(req: Request) {
   const expectedMessage = record.nonce;
 
   try {
-    const recovered = await recoverMessageAddress({
-      message: expectedMessage,
+    const verifyIsOk = await verifySignature(
       signature,
-    });
+      address,
+      expectedMessage,
+      chainType
+    );
 
-    if (recovered.toLowerCase() !== address.toLowerCase()) {
+    if (!verifyIsOk) {
       return NextResponse.json(
         { isSuccess: false, error: "Invalid signature" },
         { status: 401 }

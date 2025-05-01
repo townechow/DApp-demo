@@ -1,5 +1,4 @@
 import { NextResponse, type NextRequest } from "next/server";
-import { isAddress } from "viem";
 import { PrismaClient } from "@/lib/prisma/client";
 import { randomBytes } from "crypto";
 
@@ -10,7 +9,7 @@ export async function GET(req: NextRequest) {
   const address = searchParams.get("address");
   const chainType = searchParams.get("chainType");
 
-  if (!address || !chainType || !isAddress(address)) {
+  if (!address || !chainType ) {
     return NextResponse.json(
       { error: "Invalid address or chainType" },
       { status: 400 }

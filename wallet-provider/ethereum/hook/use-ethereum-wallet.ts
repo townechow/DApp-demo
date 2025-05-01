@@ -15,7 +15,7 @@ import {
 // config
 import { config } from "@/wallet-provider/ethereum/config";
 
-/** ethereum 錢包登入 */
+/** ethereum 钱包登录 */
 export function useEthereumWallet() {
   const [authStatus, setAuthStatus] = useState<
     "unauthenticated" | "authenticated" | "loading"
@@ -24,7 +24,7 @@ export function useEthereumWallet() {
 
   /**
    * Sign Message
-   * 簽名測試 https://etherscan.io/verifiedSignatures#
+   * 签名测试 https://etherscan.io/verifiedSignatures#
    */
   const handleSignMessage = async (message: string): Promise<string> => {
     const signedMessage = await signMessage(config, { message });
@@ -38,7 +38,7 @@ export function useEthereumWallet() {
     if (authStatus === "authenticated" || authStatus === "loading") return;
     if (!address || !chainId) throw new Error("Address or chainId is not set");
 
-    /** ethereum 錢包認證適配器 */
+    /** ethereum 钱包认证适配器 */
     const ethereumAuthAdapter: AuthenticationAdapter = {
       ...initAdapter,
       createSignature: async ({ nonce }) => {
